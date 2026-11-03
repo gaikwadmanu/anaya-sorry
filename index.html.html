@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>For Anaya</title>
+<style>
+:root{--bg1:#f7f1ff;--bg2:#ddcdff;--ink:#2d1650;--soft:#6b4a9a;--card:#ffffffd9;--accent:#8b3df0;--accent2:#c6a2ff;--glow:#b98bff77;
+box-sizing:border-box;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#120a24;--bg2:#2a1450;--ink:#f1e6ff;--soft:#c9aef0;--card:#231240d9;--accent:#b57bff;--accent2:#6d28d9;--glow:#8b5cf666;color-scheme:dark}}
+:root[data-theme="dark"]{--bg1:#120a24;--bg2:#2a1450;--ink:#f1e6ff;--soft:#c9aef0;--card:#231240d9;--accent:#b57bff;--accent2:#6d28d9;--glow:#8b5cf666;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{font-family:Georgia,"Times New Roman",serif;color:var(--ink);background:linear-gradient(160deg,var(--bg1),var(--bg2));overflow:hidden;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.blob{position:fixed;border-radius:50%;filter:blur(70px);opacity:.55;z-index:0;animation:drift 14s ease-in-out infinite alternate;pointer-events:none}
+.b1{width:320px;height:320px;background:#a569ff;top:-80px;left:-60px}.b2{width:380px;height:380px;background:#e0b3ff;bottom:-120px;right:-80px;animation-delay:-5s}.b3{width:240px;height:240px;background:#7c4dff;top:45%;left:55%;animation-delay:-9s;opacity:.35}
+@keyframes drift{to{transform:translate(60px,-50px) scale(1.2)}}
+#view{position:fixed;inset:0;overflow:hidden;z-index:1}
+#track{display:flex;height:100%;transition:transform .8s cubic-bezier(.7,0,.2,1)}
+.slide{flex:0 0 100%;height:100%;overflow-y:auto;display:flex;padding:64px 22px 110px}
+.in{margin:auto;width:100%;max-width:720px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.slide.act .in{animation:enter .9s}
+@keyframes enter{from{opacity:0;transform:translateX(60px) scale(.96)}}
+h1{font-size:clamp(2.6rem,10vw,5rem);margin:0 0 14px;line-height:1.1;background:linear-gradient(90deg,var(--accent),#d77bff,var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:clamp(2rem,7.5vw,3.4rem);margin:0 0 10px;line-height:1.15}
+p{font-size:clamp(1.2rem,4.2vw,1.55rem);line-height:1.6;max-width:36rem;margin:10px auto;color:var(--soft)}
+button{font:inherit;cursor:pointer;border:0;border-radius:999px;padding:16px 34px;font-size:1.25rem;background:linear-gradient(135deg,var(--accent),#c14dff);color:#fff;box-shadow:0 8px 24px var(--glow);transition:transform .2s}
+button:hover{transform:translateY(-2px) scale(1.04)}
+button.ghost{background:transparent;color:var(--accent);border:2px solid var(--accent);box-shadow:none}
+.hint{font-size:1.05rem;opacity:.85;margin-top:22px;animation:fl 2s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(8px)}}
+#prog{position:fixed;top:0;left:0;height:5px;width:0;background:linear-gradient(90deg,var(--accent2),var(--accent),#e08bff);z-index:20;transition:width .6s}
+#nav{position:fixed;left:0;right:0;bottom:calc(14px + env(safe-area-inset-bottom,0px));display:flex;justify-content:center;align-items:center;gap:12px;z-index:22}
+#nav button{width:52px;height:52px;padding:0;font-size:1.6rem;line-height:1}
+#dots{display:flex;gap:7px}#dots i{width:9px;height:9px;border-radius:50%;background:var(--accent2);opacity:.45;transition:all .3s;cursor:pointer}#dots i.on{opacity:1;background:var(--accent);transform:scale(1.5)}
+#env{font-size:9rem;cursor:pointer;animation:wob 2s ease-in-out infinite;user-select:none;filter:drop-shadow(0 0 26px var(--glow))}
+@keyframes wob{0%,100%{transform:rotate(-6deg) scale(1)}50%{transform:rotate(6deg) scale(1.12)}}
+.paper{background:var(--card);padding:36px 28px;border-radius:30px;box-shadow:0 16px 50px var(--glow);backdrop-filter:blur(8px)}
+.cur::after{content:"|";animation:b 1s steps(1) infinite}@keyframes b{50%{opacity:0}}
+.line{font-size:clamp(1.5rem,5.5vw,2.2rem);color:var(--ink);opacity:0;transform:translateY(20px);transition:all .8s;margin:12px 0;line-height:1.4;display:none}
+.line.show{display:block}.line.vis{opacity:1;transform:none}
+#arena{position:relative;width:100%;max-width:600px;height:340px;border-radius:30px;background:var(--card);overflow:hidden;margin-top:14px;box-shadow:inset 0 0 40px var(--glow)}
+.cat{position:absolute;font-size:3.2rem;line-height:1;cursor:pointer;transition:left 1.4s ease-in-out,top 1.4s ease-in-out;user-select:none;background:none;box-shadow:none;padding:0;border-radius:0;text-shadow:0 0 14px var(--glow)}
+.cat.got{transform:scale(3);opacity:0;pointer-events:none;transition:all .4s}
+#unlock{display:none;animation:enter .8s}
+.rw{width:100%;max-width:560px;padding:24px;border-radius:26px;margin:12px 0;font-size:clamp(1.25rem,4.5vw,1.6rem);line-height:1.5;transition:all .8s}
+#bad{background:#ffd9e255;border:2px dashed #e0457b;color:var(--ink)}
+#bad.dead{text-decoration:line-through;opacity:.4;transform:scale(.94) rotate(-2deg)}
+#good{background:var(--card);box-shadow:0 12px 36px var(--glow);display:none;color:var(--ink)}
+#rwb span{display:inline-block}#rwb.spin span{animation:spin 1s}@keyframes spin{to{transform:rotate(-720deg)}}
+.bubs{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:20px}
+.bub{width:175px;height:175px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;padding:16px;font-size:1.1rem;cursor:pointer;box-shadow:0 10px 30px var(--glow);transition:all .4s;line-height:1.35;user-select:none}
+.bub b{font-size:1.3rem;color:var(--accent)}
+.bub.on{background:linear-gradient(135deg,var(--accent),#c14dff);color:#fff;transform:scale(1.08) rotate(-3deg)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;width:100%;margin-top:22px}
+.flip{perspective:900px;height:250px;cursor:pointer}
+.inner{position:relative;width:100%;height:100%;transition:transform .7s;transform-style:preserve-3d}
+.flip.on .inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:26px;padding:24px;display:flex;align-items:center;justify-content:center;background:var(--card);box-shadow:0 10px 30px var(--glow);font-size:1.2rem;line-height:1.5}
+.front{font-size:4rem;animation:fl 2.4s ease-in-out infinite}.back{transform:rotateY(180deg)}
+#sky{width:100%;max-width:620px;border-radius:30px;background:linear-gradient(180deg,#1a0b3d,#4b1f8f);padding:22px;box-shadow:0 14px 40px var(--glow);display:flex;gap:6px;justify-content:space-around;flex-wrap:wrap}
+.star{font-size:3.2rem;cursor:pointer;filter:grayscale(1) brightness(1.3);transition:all .5s;user-select:none;background:none;padding:6px;box-shadow:none;border-radius:0}
+.star.on{filter:none;transform:scale(1.3) rotate(18deg);text-shadow:0 0 22px gold}
+#wish{min-height:5em;color:var(--ink);font-size:clamp(1.3rem,4.5vw,1.8rem)}
+input[type=range]{width:100%;max-width:520px;accent-color:var(--accent);height:34px;margin-top:20px}
+#big{font-size:5.5rem;transition:transform .2s;margin:10px 0}
+.promises{width:100%;max-width:560px;text-align:left;margin-top:18px}
+.promises label{display:flex;gap:14px;align-items:center;background:var(--card);padding:18px;border-radius:20px;margin:12px 0;cursor:pointer;transition:transform .2s;font-size:1.25rem;line-height:1.4}
+.promises label:hover{transform:translateX(4px)}
+.promises input{accent-color:var(--accent);width:26px;height:26px;flex:none}
+.meter{width:100%;max-width:560px;height:16px;background:var(--card);border-radius:99px;overflow:hidden;margin-top:16px}
+.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent2),var(--accent),#e08bff);transition:width .5s}
+#zone{position:relative;width:100%;max-width:560px;height:260px;margin-top:10px}
+#yes{position:absolute;left:50%;top:24px;transform:translateX(-50%);transition:transform .25s;white-space:nowrap}
+#no{position:absolute;left:50%;top:170px;transform:translateX(-50%);transition:all .35s;padding:12px 30px}
+#final{display:none;animation:enter .8s;align-items:center;flex-direction:column}
+.heart,.spark{position:fixed;pointer-events:none}
+.heart{bottom:-50px;z-index:0;animation:rise linear forwards;opacity:.75}
+@keyframes rise{to{transform:translateY(-115vh) rotate(40deg);opacity:0}}
+.spark{z-index:30;animation:sp .9s forwards;font-size:16px}
+@keyframes sp{to{transform:translate(var(--dx),var(--dy)) scale(.3);opacity:0}}
+canvas{position:fixed;inset:0;pointer-events:none;z-index:25}
+.toggle{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:23;padding:8px 12px;font-size:1.1rem;background:var(--card);color:var(--ink);box-shadow:none}
+</style>
+</head>
+<body>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<div id="prog"></div>
+<button class="toggle" id="theme" aria-label="Toggle theme">🌙</button>
+<canvas id="fx"></canvas>
+
+<div id="view"><div id="track">
+
+<div class="slide"><div class="in">
+  <h2>Anaya, this is for you 💜</h2>
+  <div id="env">💌</div>
+  <p class="hint">Tap the envelope to open it</p>
+</div></div>
+
+<div class="slide"><div class="in paper">
+  <h1>I’m sorry, Anaya 💜</h1>
+  <p id="typed" class="cur" style="min-height:11em;color:var(--ink)"></p>
+  <p class="hint">Swipe or tap › to keep going</p>
+</div></div>
+
+<div class="slide" id="plain"><div class="in">
+  <h2>Let me say it plainly 🪻</h2>
+  <p>Tap anywhere on this page to read each line.</p>
+  <div id="lines" style="margin-top:14px;min-height:260px">
+    <div class="line">I told you that you weren’t giving me time.</div>
+    <div class="line">But you are trying your best from your side, every single day.</div>
+    <div class="line">I didn’t see that, and I said it the wrong way.</div>
+    <div class="line">My words hurt you, and that was my mistake.</div>
+    <div class="line">You never deserved that, and I’m truly sorry. 💜</div>
+  </div>
+</div></div>
+
+<div class="slide"><div class="in">
+  <h2>Catch my violet hearts 💜</h2>
+  <p>Each one carries a piece of my apology. Tap all 7 before they escape!</p>
+  <p><b id="cnt">0</b> / 7 caught</p>
+  <div id="arena"></div>
+  <div id="unlock"><p style="color:var(--ink)">You caught every one 🥹 Every heart was always yours.</p><button id="go2">Keep going ›</button></div>
+</div></div>
+
+<div class="slide"><div class="in">
+  <h2>If I could rewind time ⏪</h2>
+  <p>This is what I said, and this is what I wish I had said.</p>
+  <div class="rw" id="bad">❌ “You’re not giving me time.”</div>
+  <button id="rwb"><span>⏪</span> Rewind</button>
+  <div class="rw" id="good">💜 “I miss you, and I know you’re doing your best. Thank you for trying, it means the world to me.”</div>
+</div></div>
+
+<div class="slide"><div class="in">
+  <h2>What I admire about you ✨</h2>
+  <p>Tap each bubble to light it up.</p>
+  <div class="bubs">
+    <div class="bub"></div><div class="bub"></div><div class="bub"></div><div class="bub"></div><div class="bub"></div>
+  </div>
+</div></div>
+
+<div class="slide"><div class="in">
+  <h2>Three things I need you to know</h2>
+  <p>Tap each card to flip it.</p>
+  <div class="cards">
+    <div class="flip"><div class="inner"><div class="face front">🪻</div><div class="face back">I said you weren’t giving me time, and I said it the wrong way. That was unfair, and I’m truly sorry.</div></div></div>
+    <div class="flip"><div class="inner"><div class="face front">💜</div><div class="face back">I know you’re trying your best from your side. I should have seen that and thanked you for it.</div></div></div>
+    <div class="flip"><div class="inner"><div class="face front">🌙</div><div class="face back">It was my mistake, not yours. I’m learning from it, and I’ll choose softer words from now on.</div></div></div>
+  </div>
+</div></div>
+
+<div class="slide"><div class="in">
+  <h2>Make a wish with me 🌠</h2>
+  <p>Tap every star to light up the sky.</p>
+  <div id="sky"><button class="star">⭐</button><button class="star">⭐</button><button class="star">⭐</button><button class="star">⭐</button><button class="star">⭐</button></div>
+  <p id="wish">Tap a star…</p>
+</div></div>
+
+<div class="slide"><div class="in">
+  <h2>How much do I value you? 🔮</h2>
+  <p>Drag the slider and see.</p>
+  <div id="big">💜</div>
+  <input type="range" id="sl" min="0" max="100" value="0" aria-label="How much I value you">
+  <p id="sltxt" style="color:var(--ink)">Slide to the right…</p>
+</div></div>
+
+<div class="slide"><div class="in">
+  <h2>My promises to you 🤞</h2>
+  <p>Tick each one and watch the meter fill.</p>
+  <div class="promises">
+    <label><input type="checkbox"> I will listen, really listen.</label>
+    <label><input type="checkbox"> I will think before I speak and be gentle with my words.</label>
+    <label><input type="checkbox"> I will own my mistakes, no excuses.</label>
+    <label><input type="checkbox"> I will be patient and value every bit of effort you make.</label>
+  </div>
+  <div class="meter"><i id="bar"></i></div>
+  <p id="mtxt">Promise meter: 0%</p>
+</div></div>
+
+<div class="slide"><div class="in">
+  <div id="ask" style="width:100%;display:flex;flex-direction:column;align-items:center">
+    <h2>Anaya, will you forgive me? 🥺💜</h2>
+    <p>I’ll be here, whatever your answer is.</p>
+    <div id="zone">
+      <button id="yes">Yes, I forgive you 💜</button>
+      <button id="no" class="ghost">No</button>
+    </div>
+    <p id="nomsg" style="font-size:1.1rem;min-height:1.6em"></p>
+  </div>
+  <div id="final">
+    <h1>Thank you, Anaya 🥹💜</h1>
+    <p>You just made my whole world brighter. I’ll treasure your heart and never take your effort for granted.</p>
+    <p style="font-size:2.4rem">🪻 💜 💌 💜 🪻</p>
+    <button class="ghost" id="again">Read it again</button>
+  </div>
+</div></div>
+
+</div></div>
+
+<div id="nav"><button id="prev" aria-label="Previous">‹</button><div id="dots"></div><button id="nextb" aria-label="Next">›</button></div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],R=n=>Math.random()*n|0;
+const V=['#8b3df0','#a569ff','#c14dff','#7c4dff','#d19bff','#9b5de5'];
+$('#theme').onclick=()=>{const r=document.documentElement;const d=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;r.dataset.theme=d?'light':'dark';$('#theme').textContent=d?'🌙':'☀️'};
+// slides
+const sl_=$$('.slide'),N=sl_.length;let idx=0;const entered={};
+$('#dots').innerHTML=sl_.map((_,i)=>'<i data-i="'+i+'"></i>').join('');
+$$('#dots i').forEach(d=>d.onclick=()=>go(+d.dataset.i));
+const enter={1:()=>typeMsg()};
+function go(i){idx=Math.max(0,Math.min(N-1,i));$('#track').style.transform='translateX('+(-idx*100)+'%)';
+sl_.forEach((s,k)=>s.classList.toggle('act',k===idx));$$('#dots i').forEach((d,k)=>d.classList.toggle('on',k===idx));
+$('#prog').style.width=(idx/(N-1)*100)+'%';$('#prev').style.visibility=idx?'visible':'hidden';$('#nextb').style.visibility=idx<N-1?'visible':'hidden';
+if(enter[idx]&&!entered[idx]){entered[idx]=1;setTimeout(enter[idx],500)}}
+$('#prev').onclick=()=>go(idx-1);$('#nextb').onclick=()=>go(idx+1);
+addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(idx+1);if(e.key==='ArrowLeft')go(idx-1)});
+let tx=0,ty=0;addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+addEventListener('touchend',e=>{if(e.target.closest('input[type=range]'))return;const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5)go(idx+(dx<0?1:-1))},{passive:true});
+go(0);
+// floating hearts
+setInterval(()=>{const h=document.createElement('div');h.className='heart';h.textContent=R(3)?'♥':'💜';h.style.color=V[R(6)];h.style.left=Math.random()*100+'vw';h.style.fontSize=(16+Math.random()*30)+'px';h.style.animationDuration=(7+Math.random()*7)+'s';document.body.appendChild(h);setTimeout(()=>h.remove(),15000)},500);
+// sparkles
+let last=0;function spark(x,y,n=1){for(let k=0;k<n;k++){const s=document.createElement('div');s.className='spark';s.textContent=['✨','♥','💜'][R(3)];s.style.color=V[R(6)];s.style.left=x+'px';s.style.top=y+'px';s.style.setProperty('--dx',(Math.random()-.5)*(n>1?160:60)+'px');s.style.setProperty('--dy',(Math.random()*(n>1?-120:50)-(n>1?20:-10))+'px');document.body.appendChild(s);setTimeout(()=>s.remove(),900)}}
+addEventListener('pointermove',e=>{const n=Date.now();if(n-last<60)return;last=n;spark(e.clientX,e.clientY)});
+addEventListener('pointerdown',e=>spark(e.clientX,e.clientY,7));
+// envelope + letter
+$('#env').onclick=()=>{boom(90);setTimeout(()=>go(1),900)};
+const msg='Anaya, I told you that you weren’t giving me time, and I said it the wrong way. I know you’re trying your best from your side, even on the days that are hard. My words hurt you, and that was my mistake. I’m really sorry, and I wanted to say it in a way that shows how much you matter to me.';
+function typeMsg(){let i=0;(function t(){if(i<=msg.length){$('#typed').textContent=msg.slice(0,i++);setTimeout(t,30)}else $('#typed').classList.remove('cur')})()}
+// plain lines
+const ln=$$('.line');let li=0;
+$('#plain').addEventListener('click',()=>{if(li<ln.length){ln[li].classList.add('show');const e=ln[li];setTimeout(()=>e.classList.add('vis'),30);li++;if(li===ln.length)boom(60)}else go(idx+1)});
+// heart game
+const ar=$('#arena');let caught=0;
+for(let k=0;k<7;k++){const h=document.createElement('button');h.className='cat';h.textContent='♥';h.style.color=V[k%6];ar.appendChild(h);
+const mv=()=>{if(h.classList.contains('got'))return;h.style.left=Math.random()*(ar.clientWidth-56)+'px';h.style.top=Math.random()*(ar.clientHeight-56)+'px'};
+setTimeout(mv,50);setInterval(mv,1500+k*120);
+h.onclick=e=>{e.stopPropagation();h.classList.add('got');caught++;$('#cnt').textContent=caught;if(caught===7){$('#unlock').style.display='block';boom(120)}}}
+$('#go2').onclick=()=>go(idx+1);
+// rewind
+$('#rwb').onclick=()=>{$('#rwb').classList.add('spin');$('#bad').classList.add('dead');setTimeout(()=>{$('#good').style.display='block';boom(70)},900);$('#rwb').style.display='none'};
+// bubbles
+const bt=['Your effort','Your patience','Your smile','Your heart','Your strength'],bl=['You give your best even when life is busy.','You are patient with me more than I deserve.','It lights up my whole day.','So kind, so warm, so real.','You keep going, and I admire that.'];
+$$('.bub').forEach((b,i)=>{b.innerHTML='<b>'+bt[i]+'</b>';b.onclick=()=>{b.classList.toggle('on');b.innerHTML=b.classList.contains('on')?bl[i]:'<b>'+bt[i]+'</b>'}});
+$$('.flip').forEach(f=>f.onclick=()=>f.classList.toggle('on'));
+// stars
+const wi=['I wish I had been more patient with you.','I wish I had chosen kinder words.','I wish I had thanked you for trying so hard.','I wish to see you smile again.','I wish for your forgiveness, and so much more time with you. 💜'];let sn=0;
+$$('.star').forEach((s,i)=>s.onclick=()=>{if(s.classList.contains('on'))return;s.classList.add('on');sn++;$('#wish').textContent=wi[i];spark(s.getBoundingClientRect().left+20,s.getBoundingClientRect().top+20,9);if(sn===5)setTimeout(()=>{$('#wish').textContent='All five wishes made, and every one is for you. 🌠💜';boom(110)},1800)});
+// slider
+const sl=$('#sl');sl.oninput=()=>{const v=+sl.value;$('#big').style.transform='scale('+(1+v/50)+')';$('#big').textContent=v<30?'💜':v<70?'💞':v<100?'💖':'♾️';
+$('#sltxt').textContent=v<30?'Slide to the right…':v<70?'More than I say out loud…':v<100?'Almost, keep going…':'Beyond measure, Anaya. 💜';if(v==100)boom(100)};
+// promises
+const bx=$$('.promises input');
+bx.forEach(b=>b.onchange=()=>{const p=Math.round(bx.filter(x=>x.checked).length/bx.length*100);$('#bar').style.width=p+'%';$('#mtxt').textContent=p===100?'All promises made 💜 One last question…':'Promise meter: '+p+'%';if(p===100){boom(90);setTimeout(()=>go(N-1),1400)}});
+// dodge
+const no=$('#no'),yes=$('#yes'),zone=$('#zone');let tries=0;
+const lines=['Are you sure? 🥺','Please think again…','I’ll bring chocolates 🍫','Pretty please? 🪻','The Yes button is looking lonely…','You can’t catch me 😄'];
+function dodge(e){e&&e.preventDefault();e&&e.stopPropagation();tries++;no.style.transform='none';no.style.left=Math.random()*(zone.clientWidth-no.offsetWidth)+'px';no.style.top=Math.random()*(zone.clientHeight-no.offsetHeight)+'px';$('#nomsg').textContent=lines[tries%6];yes.style.transform='translateX(-50%) scale('+Math.min(1+tries*.1,1.7)+')'}
+['mouseenter','touchstart','click'].forEach(v=>no.addEventListener(v,dodge,{passive:false}));
+// confetti
+const cv=$('#fx'),cx=cv.getContext('2d');let parts=[],run=false;
+const sz=()=>{cv.width=innerWidth;cv.height=innerHeight};sz();addEventListener('resize',sz);
+function boom(n=180){for(let k=0;k<n;k++)parts.push({x:innerWidth/2,y:innerHeight/2,vx:(Math.random()-.5)*16,vy:Math.random()*-14-3,s:6+Math.random()*8,c:V[R(6)],r:Math.random()*6,h:R(2)});if(!run){run=true;loop()}}
+function loop(){cx.clearRect(0,0,cv.width,cv.height);parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.3;p.r+=.2;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;if(p.h){cx.font=p.s*2+'px serif';cx.fillText('♥',0,0)}else cx.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6);cx.restore()});parts=parts.filter(p=>p.y<cv.height+20);if(parts.length)requestAnimationFrame(loop);else run=false}
+yes.onclick=()=>{$('#ask').style.display='none';$('#final').style.display='flex';boom();setTimeout(boom,700);setTimeout(boom,1400)};
+$('#again').onclick=()=>location.reload();
+</script>
+</body>
+</html>
